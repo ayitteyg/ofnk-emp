@@ -1,0 +1,47 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %} homepage {% endblock %}
+    <title>Document</title>
+</head>
+<body>
+  {% block body %}
+
+    {% block breadcrumb %}
+    <div class="container">
+      <ol class="breadcrumb my-2 col-lg-6 ">
+        <li class="breadcrumb-item active"> <a href="{% url 'home' %}">Back</a></li> 
+        <li class="breadcrumb-item active"> <a href="{% url 'UserMsg' %}">Message Inbox:</a></li>
+        <li class="breadcrumb-item active"> messages </li>    
+      </ol>
+    </div>
+    {% endblock %}
+
+    <!-- <div class="userloginpage"> -->
+        <div class="container">
+          <div class="col-lg-8 col-md-4 col-sm-8">
+            <div class="card">            
+              <div class="card-body">
+                <form method="post" novalidate>
+                  {% csrf_token %}
+                  <input type="hidden" name="next" value="{{ next }}">
+                  {% include 'includes/form.html' %}
+                  <button type="submit" class="btn btn-primary btn-block">Send</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- </div> -->
+  {% endblock %}
+</body>
+</html>
+
+

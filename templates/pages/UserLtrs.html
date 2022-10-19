@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  {% block body %}
+
+  {% block breadcrumb %}
+  <div class="container">
+    <ol class="breadcrumb my-2 ">
+      <li class="breadcrumb-item active" aria-current="page">Letters Recieved</li>
+        
+    </ol>
+  </div>
+  {% endblock %}
+    {% block content %}
+     <div class="container">
+      {% for Ltrs in userLtrs %}
+          <div class="card-header text-white "  style="background-color: rgb(138, 138, 30) ;">From: {{Ltrs.authorized}} </div>
+            <div class="card">
+              <div class="card-body p-3 ">
+                <div class="row">
+                  <div class="col-2">
+                    <img src="{% static 'img/envlp.png' %}" alt="sent_by img" class="w-50">
+
+                    <div class="mb-4">
+                      {% if Ltrs.file %}
+                      <small><a href="{% url 'LtrsV' %}">Reff</a></small>
+                      {% endif %}
+
+                      {% if Ltrs.start_from %} <br>
+                      <b>Effective</b>: <small>{{Ltrs.start_from}}</small>
+                      {% endif %}
+
+                      {% if Ltrs.end %}
+                      <p><b>To</b>: <small>{{Ltrs.end}}</small></p>
+                      {% endif %}                     
+                    </div>
+                  </div>
+                  <div class="col-10">
+                    <div class="row mb-3">
+                      <div class="col-6">
+                        <strong class="text-muted">Action: {{Ltrs.action}}: </strong> <br>
+                      </div>
+                      <div class="col-6 text-right">
+                        <small class="text-muted">{{Ltrs.date}}</small>
+                      </div>
+                    </div>
+                     {{Ltrs.description}}
+                  </div>
+                </div>
+              </div>
+            </div> <br>
+       {% endfor %}
+       </div>
+    {% endblock %}
+{%  endblock %}
+</body>
+</html>

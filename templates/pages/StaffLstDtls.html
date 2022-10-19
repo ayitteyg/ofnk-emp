@@ -1,0 +1,61 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %} homepage {% endblock %}
+    <title>Document</title>
+</head>
+<body>
+  {% block body %}
+
+    {% block breadcrumb %}
+    <div class="container">
+      <ol class="breadcrumb my-2 col-lg-6 ">
+        <li class="breadcrumb-item active"> <a href="{% url 'home' %}">Back</a></li> 
+        <li class="breadcrumb-item active"> <a href="{% url 'StaffLst' %}">List<span  style=" color:rgb(194, 70, 18)">{{msgs}}</span></a> </li>
+        <li class="breadcrumb-item active"> <a href="{% url 'formsubmit' %}">Add Staff<span  style=" color:rgb(149, 49, 6)"></span> </a></li>
+      </ol>
+    </div>
+    {% endblock %}
+       <center>
+        <div class="card">            
+          <div class="card-body">
+            <table class="table">
+                <!-- <thead  class="thead-inverse"   style="background-color: rgb(54, 61, 61);"> -->
+                  {% for lbl in head %}
+                    <td> <small><strong    style="color: rgb(188, 207, 11);">{{lbl}}</strong></small></td>
+                  {% endfor %} 
+                <!-- </thead> -->
+
+                {% for dt in data %}
+                  <tr>
+                    <td>  <small>{{dt.username}}</small> </td>
+                    <td>  <small>{{dt.fullname}}</small> </td>
+                    <td>  <small>{{dt.gender}}</small> </td>
+                    <td>  <small>{{dt.contact}}</small> </td>
+                    <td>  <small>{{dt.dob}}</small> </td>
+                    <td>  <small>{{dt.loc}}</small> </td>
+                    <td>  <small>{{dt.gname}}</small> </td>
+                    <td>  <small>{{dt.gcontact}}</small> </td>
+                    <td>  <small>{{dt.job}}</small> </td>
+                    <td>  <small>{{dt.date_employed}}</small> </td>
+                    <td>  <small>{{dt.ssnit}}</small> </td>
+                    <td>  <small>{{dt.bank}}</small> </td>
+                    <td>  <small>{{dt.group}}</small> </td>      
+                  </tr>                    
+                {% endfor %}                 
+              </table> 
+          </div>
+        </div>
+      </center>
+  {% endblock %}
+</body>
+</html>
+
+

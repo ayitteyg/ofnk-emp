@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body> 
+    {% block body %}
+      <div   class="userloginpage">
+        <div class="col-lg-8 col-md-4 col-sm-8">
+          <div class="#">
+            <div class="card-body">
+
+                {% block breadcrumb %}
+
+                   <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb"> 
+                        {% for f in doc %}
+                          <li class="breadcrumb-item active"><a href="{% url 'docV' f.pk %}">{{f.filename}}</a></li>
+                          <!-- <li class="breadcrumb-item active"><a href="#">RFC_weekly{{f.pk}}</a></li> -->
+                        {% endfor %}
+                        <!-- <li class="breadcrumb-item active"><a href="#">Induction_checklist</a></li>                                             -->
+                   </nav>
+
+                  <!-- <nav aria-label="breadcrumb"> -->
+                    <!-- <ol class="breadcrumb"> -->
+                      <!-- <li class="breadcrumb-item active" aria-current="page">Accreditation</li>   -->
+                      <!-- <li class="breadcrumb-item active"><a href="#">Guidelines</a></li> -->
+                      <!-- <li class="breadcrumb-item active"><a href="#">Attendants</a></li> -->
+                      <!-- <li class="breadcrumb-item active"><a href="#">Oil Specialist</a></li> -->
+                      <!-- <li class="breadcrumb-item active"><a href="#">Shop Supervisor</a></li>                       -->
+                   <!-- </nav> -->
+
+                   <!-- <nav aria-label="breadcrumb"> -->
+                    <!-- <ol class="breadcrumb"> -->
+                      <!-- <li class="breadcrumb-item active" aria-current="page">Job Description</li>   -->
+                      <!-- <li class="breadcrumb-item active"><a href="#">Forecourt</a></li> -->
+                      <!-- <li class="breadcrumb-item active"><a href="#">Oil Specialist</a></li> -->
+                      <!-- <li class="breadcrumb-item active"><a href="#">Quality Marshal</a></li> -->
+                      <!-- <li class="breadcrumb-item active"><a href="#">Shop Attendants</a></li>                       -->
+                   <!-- </nav> -->
+                {% endblock %}
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endblock %}
+</body>
+</html>

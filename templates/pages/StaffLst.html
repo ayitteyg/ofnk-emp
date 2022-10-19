@@ -1,0 +1,69 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %} homepage {% endblock %}
+    <title>Document</title>
+</head>
+<body>
+  {% block body %}
+
+    {% block breadcrumb %}
+    <div class="container">
+      <ol class="breadcrumb my-2 col-lg-6 ">
+        <li class="breadcrumb-item active"> <a href="{% url 'home' %}">Back</a></li> 
+        <li class="breadcrumb-item active"> Active</li>
+        <li class="breadcrumb-item active"> <a href="{% url 'StaffLstDtls' %}">View Details</a></li>
+ 
+      </ol>
+    </div>
+    {% endblock %}
+
+
+        <div class="container">
+          <div class="col-lg-10 col-md-4 col-sm-8">
+            <div class="card">            
+              <div class="card-body">
+                <table class="table">
+                    <thead  class="thead-inverse">
+                      <td>Staff List</td>
+                    </thead>
+                    
+                      <th>Management</th>
+                      {% for member in mgnt %}  
+                      <tr>
+                        <td><small>{{member.fullname}}</small></td>
+                      </tr>
+                      {% endfor %}
+
+                      <th>Staff</th>
+                      {% for member in stff %}  
+                      <tr>
+                        <td><small>{{member.fullname}}</small></td>
+                      </tr>
+                      {% endfor %}
+
+                      <th>Trainee</th>
+                      {% for member in trne %}  
+                      <tr>
+                        <td><small>{{member.fullname}}</small></td>
+                      </tr>
+                      {% endfor %}
+                                   
+                  </table> 
+              </div>
+            </div>
+          </div>
+        </div>
+
+  {% endblock %}
+</body>
+</html>
+
+

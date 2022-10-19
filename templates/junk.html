@@ -1,0 +1,124 @@
+{% if user.is_authenticated %}
+    {% block breadcrumb %}
+    <div class="container">
+      <ol class="breadcrumb my-2 ">
+        <li class="breadcrumb-item active"> <a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item active"> <a href="">Profile</a></li>
+        <li class="breadcrumb-item active"> <a href="">Letters</a></li>
+        <li class="breadcrumb-item active"> <a href="">Accreditation</a></li>
+        <li class="breadcrumb-item active"> <a href="">Messages</a></li>        
+      </ol>
+    </div>
+    {% endblock %}
+   {% endif %}
+
+
+
+
+
+   <!-- <div class="userlogindiv"> -->
+    <div class="container">
+        <div class="col-lg-4 col-md-4 col-sm-8">
+          <div class="">            
+            <div class="card-body">
+              <form method="post" novalidate>
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
+                {% include 'includes/form.html' %}
+                <button type="submit" class="btn btn-primary btn-block">Log in</button>
+              </form>
+            </div>
+              <div class="card-footer text-muted text-center red-text">
+              <small   style="color:yellow ;">New Employee?  
+                <a href="{% url 'formsubmit' %}">Submit Your Information</a> | 
+                <a href="#">Forgot your Staffid</a> 
+              </small> 
+              </div>
+          </div>
+        </div>
+      </div>
+    <!-- </div> -->
+
+
+    style="background-image: url('static/img/shell1.jpg');
+                  background-repeat: no-repeat;
+                  background-attachment: fixed;
+                  background-size: 100% 100%;"
+
+
+
+                  <div class="col-lg-10 col-md-8 col-sm-8">
+                    <div class="">            
+                      <div class="card-body"    style="background-color: rgb(235, 235, 215);">
+                        <!-- {% for i in msg %} -->
+                          <table class="table">
+                            <thead  class="thead-inverse">
+                              <th>By: george   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp date: 20-01-05</th>
+                            </thead>
+                            <tr>
+                              <td>message</td>
+                            </tr>                
+                          </table> <br> 
+                        <!-- {% endfor %}            -->
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+
+                  {% for i in msg %}
+        <div class="col-lg-10 col-md-8 col-sm-8">
+          <div class="">            
+            <div class="card-body"    style="background-color: rgb(235, 235, 215);">
+              <!-- {% for i in msg %} -->
+                <table class="table">
+                  <thead  class="thead-inverse">
+                    <th>By: george   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp date: 20-01-05</th>
+                  </thead>
+                  <tr>
+                    <td>message</td>
+                  </tr>                
+                </table> <br> 
+              <!-- {% endfor %}            -->
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+
+
+
+<!-- {% elif not mng.is_authenticated %} -->
+<div class="container">
+  <ol class="breadcrumb my-2 col-lg-8">
+    <!-- <li class="breadcrumb-item active"> <a href="{% url 'home' %}">Home</a></li> -->
+    <li class="breadcrumb-item active"> <a href="{% url 'userpage' %}">View Profile</a></li>
+    <li class="breadcrumb-item active"> <a href="">Letters</a></li>
+    <li class="breadcrumb-item active"> <a href="">Accreditation</a></li>
+    <li class="breadcrumb-item active"> <a href="{% url 'UserMsg' %}">Messages</a></li> 
+    <li class="breadcrumb-item active"> <a href="">Resource Materials</a></li>
+    <li class="breadcrumb-item active"> <a href="">Manager</a></li>        
+  </ol>
+</div>
+
+{% block content %}
+<div class="container">
+  <div class="col-lg-4 col-md-4 col-sm-8">
+    <div class="">
+      <div class="card-header text-muted text-center red-text">
+        <small   style="background-color:yellow ;"> 
+          | <a href="{% url 'formsubmit' %}">Submit Your Information</a> | 
+        </small> 
+        </div>            
+      <div class="card-body">
+        <form method="post" novalidate>
+          {% csrf_token %}
+          {% include 'includes/form.html' %}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

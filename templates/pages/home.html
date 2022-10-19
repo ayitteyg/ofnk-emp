@@ -1,0 +1,76 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %} homepage {% endblock %}
+    <title>Document</title>
+</head>
+<body>
+  {% block body %}
+    {% block breadcrumb %}
+      {% if user.is_authenticated and user.is_superuser %}
+
+      <div class="container">       
+        <ol class="breadcrumb my-2 col-lg-8">
+          <li class="breadcrumb-item active"> <a href="{% url 'StaffLst' %}">myStaff</a></li>  
+          <li class="breadcrumb-item active"> <a href="{% url 'AllMsg' %}">Messages</a></li> 
+          <li class="breadcrumb-item active"> <a href="{% url 'AllLtrs' %}">Letters</a></li> 
+          <li class="breadcrumb-item active"> <a href="{% url 'rsc' %}">Appraisal</a></li> 
+          <li class="breadcrumb-item active"> <a href="{% url 'Allrsc' %}">Resource Files</a></li>
+          <li class="breadcrumb-item active"> <a href="{% url 'signup' %}">Add User</a></li>        
+        </ol>
+      </div>
+      {% elif user.is_authenticated %}
+      <div class="container">
+        <ol class="breadcrumb my-2 col-lg-10">
+          <!-- <li class="breadcrumb-item active"> <a href="{% url 'home' %}">Home</a></li> -->
+          <li class="breadcrumb-item active"> <a href="{% url 'userpage' %}">View Profile</a></li>
+          <li class="breadcrumb-item active"> <a href="{% url 'UserLtrs' %}">Letters</a></li>
+          <li class="breadcrumb-item active"> <a href="{% url 'Acrdtn' %}">Accreditation_Appraisals</a></li>
+          <li class="breadcrumb-item active"> <a href="{% url 'UserMsg' %}">Message Recieved:</a></li> 
+          <li class="breadcrumb-item active"> <a href="{% url 'resources' %}">Resource Materials</a></li>
+                 
+        </ol>
+      </div>
+
+      {% block content %}
+      <div class="container">
+        <div class="col-lg-4 col-md-4 col-sm-8">
+          <div class="">
+            <div class="card-header text-muted text-center red-text">
+              <small   style="background-color:yellow ;"> 
+                | <a href="{% url 'formsubmit' %}">Submit Your Information</a> | 
+              </small> 
+              </div>            
+            <div class="card-body">
+              <form method="post" novalidate>
+                {% csrf_token %}
+                {% include 'includes/form.html' %}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endblock %}
+
+      {% else %}      
+      <div class="container">
+        <ol class="breadcrumb my-1  col-lg-8">
+          <li class="breadcrumb-item active"> <a href="">About</a></li>
+          <li class="breadcrumb-item active"> <a href="">Management </a></li>
+          <li class="breadcrumb-item active"> <a href="">Services</a></li>
+        </ol>
+      </div>
+      {% endif %}
+    {% endblock %}
+  {% endblock %}
+</body>
+</html>
+
+

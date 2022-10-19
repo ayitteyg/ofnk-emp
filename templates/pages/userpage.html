@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  {% block body %}
+
+
+  {% block breadcrumb %}
+  <div class="container">
+    <ol class="breadcrumb my-2 col-lg-8 ">
+      <li class="breadcrumb-item active"> <a href="{% url 'home' %}">Back</a></li>
+      <li class="breadcrumb-item active"> <a href="{% url 'update' %}">Update Records</a> </li>
+      <li class="breadcrumb-item active"> Profile </li>    
+    </ol>
+  </div>
+  {% endblock %}
+
+
+
+    {% block content %}
+    <div class="container">
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="card">            
+          <div class="card-body">
+            <table class="table">
+              <thead  class="thead-inverse">
+                <!-- <tr> -->
+                  <th>Record</th>
+                  <th>Information</th>
+                  
+                <!-- </tr>                 -->
+              </thead>
+              {% for label, info in data.items %}
+              <tr>               
+                <td>                  
+                  {{label}}                  
+                </td>
+                <td>                  
+                  {{info|default_if_none:'-'}}                  
+                </td>
+                                 
+              </tr>
+              {% endfor %}
+            </table>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  {% endblock %}
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body  style="background-color: black;"> 
+    {% block body %}
+     
+        {% block breadcrumb %}
+        <div class="container">
+            <ol class="breadcrumb my-2 col-lg-6 ">
+              <li class="breadcrumb-item active" aria-current="page">Letters</li>
+            </ol>
+          </div>
+        {% endblock %}
+          {% for letter in doc %}
+            <center>
+              <object data="{{ MEDIA_URL }}{{letter.file}}" width="1200"  height="700" type=""></object>
+            </center>
+          {% endfor %}
+      
+    {% endblock %}
+</body>
+</html>

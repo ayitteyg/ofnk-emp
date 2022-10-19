@@ -1,0 +1,57 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %} homepage {% endblock %}
+    <title>Document</title>
+</head>
+<body>
+  {% block body %}
+
+    {% block breadcrumb %}
+    <div class="container">
+        <ol class="breadcrumb my-2 col-lg-6 ">
+        <li class="breadcrumb-item active"> <a href="{% url 'home' %}">Back</a></li> 
+        <li class="breadcrumb-item active"> Letters </li>
+        <li class="breadcrumb-item active"> <a href="{% url 'letters' %}">Issue Letter:</a></li>
+            
+        </ol>
+    </div>
+    {% endblock %}
+       <center>
+        <div class="card">            
+          <div class="card-body">
+            <table class="table">
+                <!-- <thead  class="thead-inverse"   style="background-color: rgb(54, 61, 61);"> -->
+                  {% for lbl in head %}
+                    <td> <small><strong    style="color: rgb(188, 207, 11);">{{lbl}}</strong></small></td>
+                  {% endfor %} 
+                <!-- </thead> -->
+
+                {% for letr in Ltrs %}
+                  <tr>
+                    <td>  <small>{{letr.employee}}</small> </td>
+                    <td>  <small>{{letr.action}}</small> </td>
+                    <td>  <small>{{letr.description}}</small> </td>
+                    <td>  <small>{{letr.date}}</small> </td>
+                    <td>  <small>{{letr.authorized}}</small> </td> 
+                    <td>  <small>{{letr.start_from}}</small> </td>
+                    <td>  <small>{{letr.end}}</small> </td>
+                    <td>  <small>{{letr.file}}</small> </td> 
+                  </tr>                    
+                {% endfor %}                 
+              </table> 
+          </div>
+        </div>
+      </center>
+  {% endblock %}
+</body>
+</html>
+
+
